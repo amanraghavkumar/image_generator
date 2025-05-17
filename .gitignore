@@ -1,0 +1,42 @@
+
+__pycache__/
+.env
+*.png
+.venv
+.venv/
+.env
+# Python files
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Flask secret files
+.env
+instance/
+config.py
+
+# OS and editor junk
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Byte-compiled files
+*.pyc
+
+# Flask-specific
+venv/
+env/
+*.db
+*.sqlite3
+
+# Static/generated image
+/static/generated_image.png
+
+# Vercel output (optional)
+.vercel/

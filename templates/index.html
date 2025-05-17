@@ -1,0 +1,182 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Prompt to Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            /* background-color: #f8f9fa; */
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .left-panel {
+            width: 60%;
+        }
+
+        .right-panel {
+            width: 35%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: 75%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        #output-panel {
+            margin-top: 20px;
+            min-height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin-top: 20px;
+            min-height: 550px; */
+     
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+        .image-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .actions a, .actions button {
+            text-decoration: none;
+            margin-right: 10px;
+            background-color: #007bff;
+            /* color: white; */
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .suggestion {
+            /* background-color: #f1f1f1; */
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .spinner {
+            text-align: center;
+        }
+
+        .spinner img {
+            width: 120px;
+            animation: spin 1.5s linear infinite;
+            background: transparent;
+        }
+
+        .spinner-text {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>AI Prompt to Image Generator</h2>
+
+    <div class="container">
+        <div class="left-panel">
+            <div id="output-panel">
+                {% if image_generated %}
+                    <div class="image-section">
+                        <img src="{{ url_for('static', filename='generated_image.png') }}" width="412" alt="Generated Image">
+                        <div class="actions">
+                            <a href="/download" title="Download Image">Download</a>
+                            <button onclick="copyImage()">Copy IMAGE</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!-- <div id="output-panel">
+                {% if image_generated %}
+                    <!-- <h3>Your Generated Image:</h3> -->
+                    <!--<img src="{{ url_for('static', filename='generated_image.png') }}" width="412" alt="Generated Image">
+                    <div class="actions">
+                        <a href="/download" title="Download Image">Download</a>
+                        <button onclick="copyImage()"></button>Copy IMAGE</button>
+                    </div>
+                {% endif %}
+            </div> -->
+
+            <div class="form-section" style="margin-top: 20px;">
+                <form method="POST" onsubmit="showSpinner()">
+                    <input type="text" name="prompt" placeholder="Enter your prompt..." required>
+                    <button type="submit">Generate</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <h3>Suggested Prompts:</h3>
+            <div class="suggestion">A futuristic cyberpunk city at night, neon lights</div>
+            <div class="suggestion">A magical forest with glowing trees and fairies</div>
+            <div class="suggestion">An astronaut riding a horse on Mars, photorealistic</div>
+            <div class="suggestion">A steampunk airship flying over a fantasy landscape</div>
+            <div class="suggestion">A mysterious underwater city with bioluminescent creatures</div>
+            <div class="suggestion">A futuristic robot market bustling with activity</div>
+            <div class="suggestion">A serene mountain temple surrounded by floating lanterns</div>
+            <div class="suggestion">A dragon soaring above ancient ruins at sunset</div>
+            <div class="suggestion">A cybernetic samurai standing on a rain-soaked neon street</div>
+            <div class="suggestion">A whimsical candy land with giant lollipops and chocolate rivers</div>
+            <div class="suggestion">An enchanted library with endless floating books</div>
+            <div class="suggestion">A post-apocalyptic wasteland with survivors building a new society</div>
+
+        </div>
+    </div>
+
+    <script>
+        function showSpinner() {
+            const outputPanel = document.getElementById('output-panel');
+            outputPanel.innerHTML = `
+                <div class="spinner">
+                    <img src="/static/loader.gif" alt="Loading...">
+                    <div class="spinner-text">Generating your magical image...</div>
+                </div>
+            `;
+        }
+
+        function copyImage() {
+            navigator.clipboard.writeText(window.location.origin + "/static/generated_image.png").then(() => {
+                alert("Image URL copied to clipboard!");
+            });
+        }
+
+        document.querySelectorAll('.suggestion').forEach(s => {
+            s.onclick = () => {
+                document.querySelector('input[name="prompt"]').value = s.innerText;
+            };
+        });
+    </script>
+</body>
+</html>
