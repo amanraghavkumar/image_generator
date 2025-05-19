@@ -36,10 +36,10 @@ the clipboard for easy sharing.
 
 ## Example Output
 
-![alt text](picture/generated_im.png)
+![alt text](generated_im.png)
 
 ![alt text](picture/generated_ima.png)
 
 ![alt text](picture/generated_imag.png)
 
-![alt text](generated_image.png)
+![alt text](picture/generated_image.png)
