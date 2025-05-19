@@ -1,7 +1,6 @@
 
 __pycache__/
 .env
-*.png
 .venv
 .venv/
 .env

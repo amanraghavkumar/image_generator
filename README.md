@@ -36,7 +36,7 @@ the clipboard for easy sharing.
 
 ## Example Output
 
-![alt text](generated_im.png)
+![alt text](picture/generated_im.png)
 
 ![alt text](picture/generated_ima.png)
 
