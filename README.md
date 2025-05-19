@@ -42,4 +42,4 @@ the clipboard for easy sharing.
 
 ![alt text](picture/generated_imag.png)
 
-![alt text](picture/generated_image.png)
+![alt text](generated_image.png)
